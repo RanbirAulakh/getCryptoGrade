@@ -4,7 +4,8 @@ class Byte:
 		if( (len(s) % 2) !=0):
 			return None
 
-		length = len(s) / 2
+		length = int(len(s) / 2)
+
 		buf = [None] * length
 
 		for i in range(length):
@@ -29,7 +30,7 @@ class Byte:
 
 		s = ""
 		for i in range( len(buf) ):
-			s += ''.join(map(unichr, [buf[i]]))
+			s += ''.join(chr(buf[i]))
 
 		return s
 
