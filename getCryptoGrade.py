@@ -3,8 +3,8 @@
 
 from Config import*
 from RC4 import*
-from Byte import*
 
+from binascii import unhexlify
 from bs4 import BeautifulSoup
 import requests, sys
 
@@ -29,17 +29,15 @@ def scrap_website(user,course):
 
 
 def parsing_key_ciphertext(key,ciphertext):
-	byte = Byte()
-
 	#convert key
-	key = byte.hexToByteArray(key)
-	if(key==None or len(key)!=8):
+	key = bytearray.fromhex(key)
+	if(key == None or len(key) != 8):
 		print("Key must not be empty or less than 8")
 		print("fix your key in config")
 		return 
 
 	#convert ciphertext to hextoByteArray
-	ct = byte.hexToByteArray(ciphertext)
+	ct = bytearray.fromhex(ciphertext)
 	if(ct == None or len(ct) < 24):
 		print("ct is  empty or less than 24")
 		return
@@ -76,8 +74,7 @@ def main():
 				print("wrong key")
 				return
 
-		byte = Byte()
-		res = byte.byteArrayToString(ciphertext[20:len(ciphertext)])
+		res = ciphertext[20:len(ciphertext)].decode("ascii") 
 		print(res)
 
 	elif ciphertext==None:
