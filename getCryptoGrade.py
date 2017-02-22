@@ -10,8 +10,8 @@ import requests, sys
 
 
 
-def scrap_website(user):
-	url = r"https://www.cs.rit.edu/~ark/462/grades/grades.php?user="+str(user)
+def scrap_website(user,course):
+	url = r"https://www.cs.rit.edu/~ark/"+str(course)+"/grades/grades.php?user="+str(user)
 	
 	try:
 		r = requests.get(url)
@@ -24,7 +24,7 @@ def scrap_website(user):
 		return r
 	except requests.exceptions.RequestException as e:  
 		print("Webpage not avaiable. Cannot fetch ciphertext. Please check if the website is running and you are connected to the Internet")
-		print e
+		print(e)
 		sys.exit(1)
 
 
@@ -55,7 +55,7 @@ def main():
 	#get the config instance
 	config = Config()
 
-	scrap = scrap_website(config.getUserId())
+	scrap = scrap_website(config.getUserId(), config.getCourseNumber())
 	soup = BeautifulSoup(scrap.text, "html.parser")
 	ciphertext = soup.find('input', {"name": "Ciphertext"})['value']
 
