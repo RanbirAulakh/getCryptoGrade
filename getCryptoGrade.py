@@ -77,7 +77,8 @@ def main():
 				return
 
 		byte = Byte()
-		print((byte.byteArrayToString(ciphertext[20:len(ciphertext)])).encode('utf-8'))
+		res = byte.byteArrayToString(ciphertext[20:len(ciphertext)])
+		print(res)
 
 	elif ciphertext==None:
 		print("We couldnt find any input text called ciphertext")
