@@ -17,7 +17,9 @@ found for the example user as found on https://cs.rit.edu/~ark/462/encryptedgrad
 grade file section
 
 #####Fetch your own grade:
-To fetch your own grades go to  Config.py and edit your userid and key
+This software is designed to work for all sections/classes that are taught by professor Alan Kaminsky 
+To fetch your own grades go to  Config.py and edit your userid and key and course number. Professor Alan website is in the format
+https://cs.rit.edu/~ark/##courseNumber. That is the number you should put in the config
 
 #####How to run:
 $ python getCryptoGrade.py
